@@ -1,0 +1,182 @@
+/* Font Awesome 图标模拟实现 */
+
+/* 基础图标类 */
+.fa {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: auto;
+}
+
+/* 图标模拟 - 使用Unicode字符作为占位符 */
+.fa-car:before {
+    content: "🚗";
+}
+
+.fa-sliders:before {
+    content: "⚙️";
+}
+
+.fa-rocket:before {
+    content: "🚀";
+}
+
+.fa-bar-chart:before {
+    content: "📊";
+}
+
+.fa-clock-o:before {
+    content: "🕒";
+}
+
+.fa-arrow-right:before {
+    content: "→";
+}
+
+.fa-check:before {
+    content: "✓";
+}
+
+.fa-times:before {
+    content: "✗";
+}
+
+.fa-info-circle:before {
+    content: "ℹ️";
+}
+
+.fa-exclamation-triangle:before {
+    content: "⚠️";
+}
+
+.fa-refresh:before {
+    content: "🔄";
+}
+
+.fa-download:before {
+    content: "⬇️";
+}
+
+.fa-save:before {
+    content: "💾";
+}
+
+.fa-user:before {
+    content: "👤";
+}
+
+.fa-home:before {
+    content: "🏠";
+}
+
+/* 更多常用图标 */
+.fa-search:before {
+    content: "🔍";
+}
+
+.fa-filter:before {
+    content: "🔣";
+}
+
+.fa-calendar:before {
+    content: "📅";
+}
+
+.fa-cog:before {
+    content: "⚙️";
+}
+
+.fa-question-circle:before {
+    content: "❓";
+}
+
+.fa-volume-up:before {
+    content: "🔊";
+}
+
+.fa-volume-off:before {
+    content: "🔇";
+}
+
+.fa-star:before {
+    content: "⭐";
+}
+
+.fa-star-o:before {
+    content: "☆";
+}
+
+.fa-heart:before {
+    content: "❤️";
+}
+
+.fa-heart-o:before {
+    content: "♡";
+}
+
+.fa-share-alt:before {
+    content: "↗️";
+}
+
+.fa-ellipsis-h:before {
+    content: "⋯";
+}
+
+.fa-ellipsis-v:before {
+    content: "⋮";
+}
+
+/* 图标尺寸类 */
+.fa-lg {
+    font-size: 1.33333333em;
+    line-height: 0.75em;
+    vertical-align: -15%;
+}
+
+.fa-2x {
+    font-size: 2em;
+}
+
+.fa-3x {
+    font-size: 3em;
+}
+
+.fa-4x {
+    font-size: 4em;
+}
+
+.fa-5x {
+    font-size: 5em;
+}
+
+/* 图标旋转类 */
+.fa-spin {
+    -webkit-animation: fa-spin 2s infinite linear;
+    animation: fa-spin 2s infinite linear;
+}
+
+@-webkit-keyframes fa-spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+@keyframes fa-spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}

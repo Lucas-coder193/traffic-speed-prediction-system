@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>仪表盘 - 交通速度预测系统</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/js/echarts.min.js"></script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">交通速度预测系统</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/dashboard">仪表盘</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/prediction">预测</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/history">历史记录</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/assessment">模型评估</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="container mt-5">
+        <h1 class="text-center mb-5">系统仪表盘</h1>
+        
+        <!-- 统计卡片 -->
+        <div class="row mb-5">
+            <div class="col-md-3">
+                <div class="card bg-primary text-white">
+                    <div class="card-body">
+                        <h3 class="card-title">总节点数</h3>
+                        <p class="card-text display-4" id="total-nodes">0</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-success text-white">
+                    <div class="card-body">
+                        <h3 class="card-title">平均速度</h3>
+                        <p class="card-text display-4" id="avg-speed">0</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-warning text-white">
+                    <div class="card-body">
+                        <h3 class="card-title">拥堵路段</h3>
+                        <p class="card-text display-4" id="congested-roads">0</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-info text-white">
+                    <div class="card-body">
+                        <h3 class="card-title">历史预测</h3>
+                        <p class="card-text display-4" id="history-count">0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 道路网络可视化 -->
+        <div class="mb-5">
+            <h2 class="text-center">道路网络可视化</h2>
+            <div class="bg-light p-3 rounded-lg shadow">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="mb-3">
+                            <label for="dataset-select" class="form-label">选择数据集</label>
+                            <select id="dataset-select" class="form-select">
+                                <option value="SZBZ">深圳北站 (SZBZ)</option>
+                                <option value="Los-loop">洛杉矶高速 (Los-loop)</option>
+                            </select>
+                        </div>
+                        <button id="refresh-network" class="btn btn-primary w-100 mb-3">刷新网络</button>
+                        <div class="mb-3">
+                            <label class="form-label">图例</label>
+                            <div class="row">
+                                <div class="col-4">低速</div>
+                                <div class="col-8 bg-red-500" style="background: linear-gradient(to right, #ff0000, #ffff00, #00ff00); height: 20px;"></div>
+                            </div>
+                            <div class="row mt-1">
+                                <div class="col-4">高速</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div id="road-network-chart" style="width: 100%; height: 500px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 速度分布和预测趋势 -->
+        <div class="row mb-5">
+            <div class="col-md-6">
+                <h2 class="text-center">速度分布</h2>
+                <div class="bg-light p-3 rounded-lg shadow">
+                    <div id="speed-distribution-chart" style="width: 100%; height: 400px;"></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2 class="text-center">预测趋势</h2>
+                <div class="bg-light p-3 rounded-lg shadow">
+                    <div id="prediction-trend-chart" style="width: 100%; height: 400px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 实时预测结果 -->
+        <div class="mb-5">
+            <h2 class="text-center">实时预测结果</h2>
+            <div class="bg-light p-3 rounded-lg shadow">
+                <div id="real-time-prediction-chart" style="width: 100%; height: 400px;"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white mt-8 py-4">
+        <div class="container text-center">
+            <p>&copy; 2024 交通速度预测系统. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>交通速度预测系统</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/js/echarts.min.js"></script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">交通速度预测系统</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">仪表盘</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/prediction">预测</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/history">历史记录</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/assessment">模型评估</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="container mt-5">
+        <div class="jumbotron bg-light p-5 rounded-lg shadow">
+            <h1 class="display-4 text-center">交通速度预测系统</h1>
+            <p class="lead text-center mt-3">基于深度学习的智能交通速度预测平台</p>
+            <div class="mt-5 text-center">
+                <a href="/dashboard" class="btn btn-primary btn-lg mx-2">进入仪表盘</a>
+                <a href="/prediction" class="btn btn-success btn-lg mx-2">进行预测</a>
+            </div>
+        </div>
+
+        <!-- 系统介绍 -->
+        <div class="mt-8">
+            <h2 class="text-center mb-4">系统功能介绍</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title text-center">数据可视化</h3>
+                            <p class="card-text">直观展示交通数据分布、道路网络和预测结果，帮助用户快速理解交通状况。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title text-center">智能预测</h3>
+                            <p class="card-text">基于GCN+GRU+模糊推理机制的深度学习模型，准确预测未来交通速度。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title text-center">历史记录</h3>
+                            <p class="card-text">查看和分析历史预测结果，支持多维度比较和评估。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 技术架构 -->
+        <div class="mt-8">
+            <h2 class="text-center mb-4">技术架构</h2>
+            <div class="bg-light p-5 rounded-lg">
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>前端：</strong>HTML5, CSS3, JavaScript, Bootstrap, ECharts</li>
+                    <li class="list-group-item"><strong>后端：</strong>Python, Flask</li>
+                    <li class="list-group-item"><strong>深度学习框架：</strong>TensorFlow</li>
+                    <li class="list-group-item"><strong>模型：</strong>GCN (图卷积网络) + GRU (门控循环单元) + 模糊推理机制</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white mt-8 py-4">
+        <div class="container text-center">
+            <p>&copy; 2024 交通速度预测系统. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

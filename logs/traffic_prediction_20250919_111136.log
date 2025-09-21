@@ -1,0 +1,25 @@
+2025-09-19 11:11:36,448 - TrafficPrediction - INFO - === 交通车辆速度预测应用系统 ===
+2025-09-19 11:11:36,448 - TrafficPrediction - INFO - 当前模式: train
+2025-09-19 11:11:36,449 - TrafficPrediction - INFO - 开始模型训练...
+2025-09-19 11:11:37,274 - src.model_training - INFO - 开始训练模型: gcn_gru_fuzzy, 数据集: Los-loop
+2025-09-19 11:11:37,276 - src.model_training - INFO - 加载数据集: Los-loop
+2025-09-19 11:11:38,276 - src.model_training - INFO - 已加载预训练的标准化器
+2025-09-19 11:11:38,276 - src.model_training - INFO - 数据集加载完成: X形状=(32111, 12, 207), y形状=(32111, 207), 外部特征形状=(32111, 207, 10), 邻接矩阵形状=(207, 207)
+2025-09-19 11:11:38,276 - src.model_training - INFO - 划分数据集...
+2025-09-19 11:11:39,229 - src.model_training - INFO - 训练集大小: 19266
+2025-09-19 11:11:39,230 - src.model_training - INFO - 验证集大小: 6422
+2025-09-19 11:11:39,230 - src.model_training - INFO - 测试集大小: 6423
+2025-09-19 11:11:39,364 - src.model_training - INFO - 创建模型，节点数: 207, 隐藏层大小: 64
+2025-09-19 11:11:39,364 - src.model_structure - INFO - 创建模型: 节点数=207, 时间步=12, 隐藏层大小=64
+2025-09-19 11:11:40,515 - TrafficPrediction - INFO - 初始化模糊推理系统...
+2025-09-19 11:11:40,527 - src.model_structure - INFO - SpatioTemporalGCNGRU.call() called with inputs type: <class 'list'>
+2025-09-19 11:11:40,528 - src.model_structure - INFO - Training mode: False
+2025-09-19 11:11:40,528 - src.model_structure - INFO - Inputs is list/tuple with length: 3
+2025-09-19 11:11:40,528 - src.model_structure - INFO - Speed sequences shape: (None, 12, 207)
+2025-09-19 11:11:40,543 - src.model_structure - INFO - Adjacency matrix shape: (None, 207, 207)
+2025-09-19 11:11:40,544 - src.model_structure - INFO - External features shape: (None, 207, 10)
+2025-09-19 11:11:41,377 - src.model_structure - ERROR - Error in external features processing: module 'tensorflow' has no attribute 'mean'
+2025-09-19 11:11:41,377 - src.model_structure - ERROR - Error in SpatioTemporalGCNGRU.call(): module 'tensorflow' has no attribute 'mean'
+2025-09-19 11:11:41,377 - src.model_structure - ERROR - Inputs type: <class 'list'>
+2025-09-19 11:11:41,378 - src.model_structure - ERROR - Training type: <class 'bool'>
+2025-09-19 11:11:41,378 - src.model_structure - ERROR - Training value: False

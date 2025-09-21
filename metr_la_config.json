@@ -1,0 +1,21 @@
+{
+    "real_data_config": {
+        "enabled": true,
+        "data_file": "data/METR-LA.h5",
+        "adj_matrix_file": "data/adj_METR-LA.pkl",
+        "has_header": true,
+        "delimiter": ",",
+        "field_mapping": {
+            "timestamp": "timestamp",
+            "node_id": "node_id",
+            "speed": "speed"
+        },
+        "time_format": "%Y-%m-%d %H:%M:%S",
+        "weather_mapping": {
+            "晴": 0,
+            "多云": 1,
+            "雨": 2,
+            "雾": 3
+        }
+    }
+}

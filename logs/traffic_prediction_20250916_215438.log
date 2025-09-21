@@ -1,0 +1,132 @@
+2025-09-16 21:54:38,679 - TrafficPrediction - INFO - === 交通车辆速度预测应用系统 ===
+2025-09-16 21:54:38,679 - TrafficPrediction - INFO - 当前模式: train
+2025-09-16 21:54:38,680 - TrafficPrediction - INFO - 开始模型训练...
+2025-09-16 21:54:38,887 - numexpr.utils - INFO - Note: NumExpr detected 32 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2025-09-16 21:54:38,888 - numexpr.utils - INFO - NumExpr defaulting to 8 threads.
+2025-09-16 21:54:42,499 - src.model_training - INFO - 开始训练模型: gcn_gru_fuzzy, 数据集: Los-loop
+2025-09-16 21:54:42,500 - src.model_training - INFO - 加载数据集: Los-loop
+2025-09-16 21:54:42,824 - src.model_training - INFO - 已加载预训练的标准化器
+2025-09-16 21:54:42,824 - src.model_training - INFO - 数据集加载完成: X形状=(32111, 12, 207), y形状=(32111, 207), 外部特征形状=(32111, 207, 10), 邻接矩阵形状=(207, 207)
+2025-09-16 21:54:42,824 - src.model_training - INFO - 划分数据集...
+2025-09-16 21:54:43,235 - src.model_training - INFO - 训练集大小: 19266
+2025-09-16 21:54:43,235 - src.model_training - INFO - 验证集大小: 6422
+2025-09-16 21:54:43,236 - src.model_training - INFO - 测试集大小: 6423
+2025-09-16 21:54:43,281 - src.model_training - INFO - 创建模型，节点数: 207, 隐藏层大小: 64
+2025-09-16 21:54:43,281 - src.model_structure - INFO - 创建模型: 节点数=207, 时间步=12, 隐藏层大小=64
+2025-09-16 21:54:43,282 - TrafficPrediction - INFO - 初始化模糊推理系统...
+2025-09-16 21:54:44,310 - tensorflow - WARNING - From C:\Downloads\Anaconda\Lib\site-packages\keras\src\backend\tensorflow\core.py:232: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+2025-09-16 21:54:44,376 - src.model_structure - INFO - 模型结构摘要:
+2025-09-16 21:54:44,390 - src.model_structure - INFO - Model: "functional"
+┏━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━━━━━┓
+┃ Layer (type)    ┃ Output Shape   ┃ Param # ┃ Connected to   ┃
+┡━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━━━━━━┩
+│ input_layer     │ (None, 12,     │       0 │ -              │
+│ (InputLayer)    │ 207)           │         │                │
+├─────────────────┼────────────────┼─────────┼────────────────┤
+│ reshape         │ (None, 12,     │       0 │ input_layer[0… │
+│ (Reshape)       │ 207, 1)        │         │                │
+├─────────────────┼────────────────┼─────────┼────────────────┤
+│ permute         │ (None, 207,    │       0 │ reshape[0][0]  │
+│ (Permute)       │ 12, 1)         │         │                │
+├─────────────────┼────────────────┼─────────┼────────────────┤
+│ reshape_1       │ (None, 207,    │       0 │ permute[0][0]  │
+│ (Reshape)       │ 12)            │         │                │
+├─────────────────┼────────────────┼─────────┼────────────────┤
+│ input_layer_1   │ (None, 207,    │       0 │ -              │
+│ (InputLayer)    │ 207)           │         │                │
+├─────────────────┼────────────────┼─────────┼────────────────┤
+│ gcn_layer       │ (None, 207,    │     416 │ reshape_1[0][… │
+│ (GCNLayer)      │ 32)            │         │ input_layer_1… │
+├─────────────────┼────────────────┼─────────┼────────────────┤
+│ batch_normaliz… │ (None, 207,    │     128 │ gcn_layer[0][… │
+│ (BatchNormaliz… │ 32)            │         │                │
+├─────────────────┼────────────────┼─────────┼────────────────┤
+│ input_layer_2   │ (None, 207,    │       0 │ -              │
+│ (InputLayer)    │ 10)            │         │                │
+├─────────────────┼────────────────┼─────────┼────────────────┤
+│ gcn_layer_1     │ (None, 207,    │   1,056 │ batch_normali… │
+│ (GCNLayer)      │ 32)            │         │ input_layer_1… │
+├─────────────────┼────────────────┼─────────┼────────────────┤
+│ global_average… │ (None, 10)     │       0 │ input_layer_2… │
+│ (GlobalAverage… │                │         │                │
+├─────────────────┼────────────────┼─────────┼────────────────┤
+│ batch_normaliz… │ (None, 207,    │     128 │ gcn_layer_1[0… │
+│ (BatchNormaliz… │ 32)            │         │                │
+├─────────────────┼────────────────┼─────────┼────────────────┤
+│ dense (Dense)   │ (None, 64)     │     704 │ global_averag… │
+├─────────────────┼────────────────┼─────────┼────────────────┤
+│ dropout         │ (None, 128)    │       0 │ dense[0][0],   │
+│ (Dropout)       │                │         │ dense_2[0][0]  │
+├─────────────────┼────────────────┼─────────┼────────────────┤
+│ reshape_2       │ (None, 12,     │       0 │ batch_normali… │
+│ (Reshape)       │ 552)           │         │                │
+├─────────────────┼────────────────┼─────────┼────────────────┤
+│ gru (GRU)       │ (None, 12, 64) │ 118,656 │ reshape_2[0][… │
+├─────────────────┼────────────────┼─────────┼────────────────┤
+│ dense_1 (Dense) │ (None, 32)     │   2,080 │ dropout[0][0]  │
+├─────────────────┼────────────────┼─────────┼────────────────┤
+│ gru_1 (GRU)     │ (None, 64)     │  24,960 │ gru[0][0]      │
+├─────────────────┼────────────────┼─────────┼────────────────┤
+│ batch_normaliz… │ (None, 32)     │     128 │ dense_1[0][0]  │
+│ (BatchNormaliz… │                │         │                │
+├─────────────────┼────────────────┼─────────┼────────────────┤
+│ concatenate     │ (None, 96)     │       0 │ gru_1[0][0],   │
+│ (Concatenate)   │                │         │ batch_normali… │
+├─────────────────┼────────────────┼─────────┼────────────────┤
+│ dense_2 (Dense) │ (None, 128)    │  12,416 │ concatenate[0… │
+├─────────────────┼────────────────┼─────────┼────────────────┤
+│ dense_3 (Dense) │ (None, 64)     │   8,256 │ dropout[1][0]  │
+├─────────────────┼────────────────┼─────────┼────────────────┤
+│ dense_4 (Dense) │ (None, 207)    │  13,455 │ dense_3[0][0]  │
+└─────────────────┴────────────────┴─────────┴────────────────┘
+ Total params: 182,383 (712.43 KB)
+ Trainable params: 182,191 (711.68 KB)
+ Non-trainable params: 192 (768.00 B)
+
+2025-09-16 21:54:44,393 - src.model_training - INFO - 初始化模糊推理系统...
+2025-09-16 21:54:44,393 - TrafficPrediction - INFO - 初始化模糊推理系统...
+2025-09-16 21:54:44,393 - src.model_training - INFO - 模型目录已创建: D:\大三夏季学期\交通车辆速度预测应用系统\models
+2025-09-16 21:54:44,394 - src.model_training - INFO - 临时禁用TensorBoard回调，使用TrainingVisualizer代替
+2025-09-16 21:54:44,395 - gcn_gru_fuzzy_Los-loop_visualizer - INFO - 开始训练模型: gcn_gru_fuzzy，数据集: Los-loop，总轮次: 10
+2025-09-16 21:54:44,395 - src.model_training - INFO - 开始模型训练，共10轮
+2025-09-16 21:54:57,690 - src.model_training - INFO - 轮次 1/10: 损失=0.178986, 验证损失=0.060750, 损失变化率=nan%, MAE=0.158575, 验证MAE=0.178860, RMSE=0.241042, 验证RMSE=0.217341, 平滑损失=0.178986 [最佳] [有效]
+2025-09-16 21:54:57,692 - gcn_gru_fuzzy_Los-loop_visualizer - INFO - Epoch 1 完成: 训练损失=0.178986, 验证损失=0.060750, 损失变化率=0.00%
+2025-09-16 21:55:05,855 - src.model_training - INFO - 轮次 2/10: 损失=0.034667, 验证损失=0.029126, 损失变化率=80.63%, MAE=0.104091, 验证MAE=0.091264, RMSE=0.168163, 验证RMSE=0.161072, 平滑损失=0.034667 [最佳] [有效]
+2025-09-16 21:55:05,857 - gcn_gru_fuzzy_Los-loop_visualizer - INFO - Epoch 2 完成: 训练损失=0.034667, 验证损失=0.029126, 损失变化率=80.63%
+2025-09-16 21:55:14,129 - src.model_training - INFO - 轮次 3/10: 损失=0.029045, 验证损失=0.028258, 损失变化率=16.22%, MAE=0.095486, 验证MAE=0.087950, RMSE=0.162609, 验证RMSE=0.161192, 平滑损失=0.029045 [最佳] [有效]
+2025-09-16 21:55:14,132 - gcn_gru_fuzzy_Los-loop_visualizer - INFO - Epoch 3 完成: 训练损失=0.029045, 验证损失=0.028258, 损失变化率=16.22%
+2025-09-16 21:55:22,614 - src.model_training - INFO - 轮次 4/10: 损失=0.028476, 验证损失=0.029067, 损失变化率=1.96%, MAE=0.094203, 验证MAE=0.106841, RMSE=0.162051, 验证RMSE=0.164286, 平滑损失=0.028476 [最佳] [有效]
+2025-09-16 21:55:22,617 - gcn_gru_fuzzy_Los-loop_visualizer - INFO - Epoch 4 完成: 训练损失=0.028476, 验证损失=0.029067, 损失变化率=1.96%
+2025-09-16 21:55:30,978 - src.model_training - INFO - 轮次 5/10: 损失=0.028182, 验证损失=0.028209, 损失变化率=1.03%, MAE=0.093344, 验证MAE=0.085556, RMSE=0.161528, 验证RMSE=0.161935, 平滑损失=0.059871 [最佳] [有效]
+2025-09-16 21:55:30,981 - gcn_gru_fuzzy_Los-loop_visualizer - INFO - Epoch 5 完成: 训练损失=0.028182, 验证损失=0.028209, 损失变化率=1.03%
+2025-09-16 21:55:39,410 - src.model_training - INFO - 轮次 6/10: 损失=0.028051, 验证损失=0.029858, 损失变化率=0.47%, MAE=0.093218, 验证MAE=0.087473, RMSE=0.161458, 验证RMSE=0.167043, 平滑损失=0.029684 [最佳] [有效]
+2025-09-16 21:55:39,412 - gcn_gru_fuzzy_Los-loop_visualizer - INFO - Epoch 6 完成: 训练损失=0.028051, 验证损失=0.029858, 损失变化率=0.47%
+2025-09-16 21:55:47,644 - src.model_training - INFO - 轮次 7/10: 损失=0.027843, 验证损失=0.028424, 损失变化率=0.74%, MAE=0.092724, 验证MAE=0.086636, RMSE=0.161040, 验证RMSE=0.162985, 平滑损失=0.028319 [最佳] [有效]
+2025-09-16 21:55:47,647 - gcn_gru_fuzzy_Los-loop_visualizer - INFO - Epoch 7 完成: 训练损失=0.027843, 验证损失=0.028424, 损失变化率=0.74%
+2025-09-16 21:55:56,049 - src.model_training - INFO - 轮次 8/10: 损失=0.027667, 验证损失=0.030814, 损失变化率=0.63%, MAE=0.092288, 验证MAE=0.088144, RMSE=0.160704, 验证RMSE=0.170240, 平滑损失=0.028044 [最佳] [有效]
+2025-09-16 21:55:56,052 - gcn_gru_fuzzy_Los-loop_visualizer - INFO - Epoch 8 完成: 训练损失=0.027667, 验证损失=0.030814, 损失变化率=0.63%
+2025-09-16 21:56:04,559 - src.model_training - INFO - 轮次 9/10: 损失=0.027253, 验证损失=0.026441, 损失变化率=1.50%, MAE=0.090862, 验证MAE=0.088152, RMSE=0.159698, 验证RMSE=0.157261, 平滑损失=0.027799 [最佳] [有效]
+2025-09-16 21:56:04,561 - gcn_gru_fuzzy_Los-loop_visualizer - INFO - Epoch 9 完成: 训练损失=0.027253, 验证损失=0.026441, 损失变化率=1.50%
+2025-09-16 21:56:13,076 - src.model_training - INFO - 轮次 10/10: 损失=0.027204, 验证损失=0.026446, 损失变化率=0.18%, MAE=0.090948, 验证MAE=0.087870, RMSE=0.159659, 验证RMSE=0.157232, 平滑损失=0.027604 [最佳] [有效]
+2025-09-16 21:56:13,078 - gcn_gru_fuzzy_Los-loop_visualizer - INFO - Epoch 10 完成: 训练损失=0.027204, 验证损失=0.026446, 损失变化率=0.18%
+2025-09-16 21:56:13,101 - gcn_gru_fuzzy_Los-loop_visualizer - INFO - 训练完成！总耗时: 0小时 1分钟 28秒
+2025-09-16 21:56:13,102 - gcn_gru_fuzzy_Los-loop_visualizer - INFO - 训练历史已保存到: D:\大三夏季学期\交通车辆速度预测应用系统\logs\training_history_gcn_gru_fuzzy_Los-loop_20250916_215613.json
+2025-09-16 21:56:13,103 - src.model_training - INFO - 保存训练好的模型...
+2025-09-16 21:56:13,162 - src.model_training - INFO - 模型已保存至: D:\大三夏季学期\交通车辆速度预测应用系统\models\gcn_gru_fuzzy_Los-loop.keras
+2025-09-16 21:56:13,173 - src.model_training - INFO - 模型信息已保存至: D:\大三夏季学期\交通车辆速度预测应用系统\models\gcn_gru_fuzzy_Los-loop_info.pkl
+2025-09-16 21:56:13,173 - TrafficPrediction - INFO - 模糊推理系统已保存至: D:\大三夏季学期\交通车辆速度预测应用系统\models\fuzzy_system_Los-loop.pkl
+2025-09-16 21:56:13,174 - src.model_training - INFO - 模糊推理系统已保存至: D:\大三夏季学期\交通车辆速度预测应用系统\models\fuzzy_system_Los-loop.pkl
+2025-09-16 21:56:13,174 - src.model_training - INFO - 在测试集上评估模型性能...
+2025-09-16 21:56:14,397 - src.model_training - INFO - 测试集性能:
+2025-09-16 21:56:14,397 - src.model_training - INFO - Loss: 0.0264
+2025-09-16 21:56:14,397 - src.model_training - INFO - RMSE (标准化): 0.1572
+2025-09-16 21:56:14,397 - src.model_training - INFO - RMSE (原始值，km/h): 18.8613
+2025-09-16 21:56:14,398 - src.model_training - INFO - MAE (标准化): 0.0881
+2025-09-16 21:56:14,398 - src.model_training - INFO - MAE (原始值，km/h): 10.5684
+2025-09-16 21:56:16,553 - src.model_training - INFO - 准确率 (±10.0%误差范围): 70.23%
+2025-09-16 21:56:16,562 - src.model_training - INFO - 测试结果已保存至: D:\大三夏季学期\交通车辆速度预测应用系统\results\test_results_20250916_215616.pkl
+2025-09-16 21:56:16,563 - gcn_gru_fuzzy_Los-loop_visualizer - INFO - 测试结果: {'loss': 0.02641446515917778, 'rmse': 0.15717734396457672, 'mae': 0.08806993067264557, 'original_rmse': 18.861281275749207, 'original_mae': 10.568391680717468, 'accuracy': 0.702281429735078}
+2025-09-16 21:56:17,938 - gcn_gru_fuzzy_Los-loop_visualizer - INFO - 训练进度图表已保存到: D:\大三夏季学期\交通车辆速度预测应用系统\logs\training_progress_gcn_gru_fuzzy_Los-loop_20250916_215616.png
+2025-09-16 21:59:20,585 - gcn_gru_fuzzy_Los-loop_visualizer - INFO - 预测对比图表已保存到: D:\大三夏季学期\交通车辆速度预测应用系统\logs\prediction_comparison_gcn_gru_fuzzy_Los-loop_20250916_215919.png
+2025-09-16 21:59:22,109 - gcn_gru_fuzzy_Los-loop_visualizer - INFO - 误差分布图已保存到: D:\大三夏季学期\交通车辆速度预测应用系统\logs\error_distribution_gcn_gru_fuzzy_Los-loop_20250916_215921.png

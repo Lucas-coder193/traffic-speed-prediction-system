@@ -1,0 +1,266 @@
+/* 基础样式重置 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* 响应式布局 */
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12,
+.col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12,
+.col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12,
+.col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+/* 响应式列布局 */
+@media (min-width: 576px) {
+    .col-sm-1 { width: 8.333333%; }
+    .col-sm-2 { width: 16.666667%; }
+    .col-sm-3 { width: 25%; }
+    .col-sm-4 { width: 33.333333%; }
+    .col-sm-5 { width: 41.666667%; }
+    .col-sm-6 { width: 50%; }
+    .col-sm-7 { width: 58.333333%; }
+    .col-sm-8 { width: 66.666667%; }
+    .col-sm-9 { width: 75%; }
+    .col-sm-10 { width: 83.333333%; }
+    .col-sm-11 { width: 91.666667%; }
+    .col-sm-12 { width: 100%; }
+}
+
+@media (min-width: 768px) {
+    .col-md-1 { width: 8.333333%; }
+    .col-md-2 { width: 16.666667%; }
+    .col-md-3 { width: 25%; }
+    .col-md-4 { width: 33.333333%; }
+    .col-md-5 { width: 41.666667%; }
+    .col-md-6 { width: 50%; }
+    .col-md-7 { width: 58.333333%; }
+    .col-md-8 { width: 66.666667%; }
+    .col-md-9 { width: 75%; }
+    .col-md-10 { width: 83.333333%; }
+    .col-md-11 { width: 91.666667%; }
+    .col-md-12 { width: 100%; }
+}
+
+@media (min-width: 992px) {
+    .col-lg-1 { width: 8.333333%; }
+    .col-lg-2 { width: 16.666667%; }
+    .col-lg-3 { width: 25%; }
+    .col-lg-4 { width: 33.333333%; }
+    .col-lg-5 { width: 41.666667%; }
+    .col-lg-6 { width: 50%; }
+    .col-lg-7 { width: 58.333333%; }
+    .col-lg-8 { width: 66.666667%; }
+    .col-lg-9 { width: 75%; }
+    .col-lg-10 { width: 83.333333%; }
+    .col-lg-11 { width: 91.666667%; }
+    .col-lg-12 { width: 100%; }
+}
+
+/* 表单样式 */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* 按钮样式 */
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+.btn-primary:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-primary:disabled {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    opacity: 0.65;
+}
+
+/* 卡片样式 */
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+}
+
+.card-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.card-footer {
+    padding: 0.75rem 1.25rem;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+/* 表格样式 */
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+}
+
+.table th, .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+/* 导航栏样式 */
+.navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+}
+
+.navbar-brand {
+    display: inline-block;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+}
+
+/* 加载覆盖层 */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.loading-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 动画 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
