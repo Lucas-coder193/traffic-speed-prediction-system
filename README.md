@@ -1,6 +1,8 @@
-# 交通车辆速度预测应用系统
+# traffic-speed-prediction-system
 
 ## 项目简介
+
+This project develops an intelligent traffic speed prediction system using a hybrid GCN-GRU-Fuzzy model to capture spatial-temporal traffic patterns. Featuring a Flask-based interface, it enables dataset selection, parameter configuration, and real-time result visualization, supporting efficient traffic management.
 
 这是一个基于深度学习的交通车辆速度预测应用系统，结合了图卷积网络（GCN）、门控循环单元（GRU）和模糊推理机制，能够预测未来某一时段交通路段上的车辆速度。系统不仅考虑了交通数据的时序性和空间性，还融入了天气、节假日、时间段等外部因素，提高了预测的准确性和可解释性。
 
